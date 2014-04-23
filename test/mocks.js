@@ -15,5 +15,10 @@ var EZAB_DEV	= angular.module('EZAB_DEV', ['EZAB_APP', 'ngMockE2E']).run(functio
 		$httpBackend.whenPOST('/webproperties').respond(function(method, url, data, headers){
 			return [201, data];
 		})
+
+		$httpBackend.whenGET(/webproperties\/\d+\/campaigns/).respond(function(method, url, data, headers){
+			return [200, [{id:1, name: 'HomePage', start: 'return window.location.pathname === "/"', success: 'return window.location.pathname === "/thankyou"'}, {id: 2, name: 'Other page', start: 'return window.location.pathname === "/wat"', success: 'return window.location.pathname === "/thankyou2"'}]]
+		})
+		
 		$httpBackend.whenGET(/\/public\/components\/.*\/.*html/).passThrough();
 	});

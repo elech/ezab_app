@@ -105,7 +105,7 @@ gulp.task('staticsvr', function(next){
 })
 
 gulp.task('build', function(){
-  return gulp.src(lib_js.concat(['bower_components/angular-mocks/angular-mocks.js', 'test/mocks.js'].concat(src_js)))
+  return gulp.src(lib_js.concat(['bower_components/angular-mocks/angular-mocks.js', 'test/mocks.js', 'bower_components/jquery/dist/jquery.js' , 'bower_components/bootstrap/js/dropdown.js'].concat(src_js)))
     .pipe(concat('main.js'))
     .pipe(gulp.dest('build/'));
 })
