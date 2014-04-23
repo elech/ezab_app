@@ -1,5 +1,5 @@
 'use strict';
-angular.module('ezab_app', ['ui.router']).config(['$stateProvider', function($stateProvider){
+var EZAB_APP = angular.module('ezab_app', ['ui.router']).config(['$stateProvider', function($stateProvider){
 	$stateProvider
 		.state('login', {
 			url: '',
