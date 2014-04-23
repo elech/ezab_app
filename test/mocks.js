@@ -1,9 +1,7 @@
-(function(){
-	angular.module('mocks', ['EZAB_APP', 'ngMockE2E']).run(function($httpBackend){
-		console.log('dat mocks');
+
+var EZAB_DEV	= angular.module('EZAB_DEV', ['EZAB_APP', 'ngMockE2E']).run(function($httpBackend){
 		$httpBackend.whenPOST('/tokens').respond(function(method){
-			console.log(method)
-			return [201];
+			return [201, {token: 'abc123secure'}];
 		})
+		$httpBackend.whenGET(/\/public\/components\/.*\/.*html/).passThrough();
 	});
-})()

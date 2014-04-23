@@ -12,7 +12,7 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 			url: 'dash',
 			views: {
 				'header': {templateUrl: '/public/components/header/header.html'},
-				'main': {template: ''}
+				'main': {template: 'asdf'}
 			}
 		})
 }])
