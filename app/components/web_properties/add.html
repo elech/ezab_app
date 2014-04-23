@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Add Web Property</div>
+  <div class="panel-body">
+    <!-- start form -->
+    <form role="form" name="propAddForm" novalidate>
+		  <div class="form-group" ng-class="{'has-error': propAddForm.username.$invalid && propAddForm.name.$dirty}">
+		    <label for="username">Name</label>
+		    <span class="label label-danger pull-right" ng-show="propAddForm.username.$error.required && propAddForm.username.$dirty">Required</span>
+		    <input type="text" class="form-control" name="username" placeholder="Name" required ng-model="prop_name">
+		  </div>
+		  <div class="form-group" ng-class="{'has-error': propAddForm.password.$invalid && propAddForm.password.$dirty}">
+		    <label for="password">URL</label>
+		    <span class="label label-danger pull-right" ng-show="propAddForm.password.$error.required && propAddForm.password.$dirty">Required</span>
+		    <input type="password" class="form-control" name="password" placeholder="http://www.mydomain.com" required ng-model="url">
+		  </div>
+		  <button type="submit" class="btn btn-default" ng-click="login(propAddForm)" ng-disable="{propAddForm.$valid && propAddForm.$dirty}">Add</button>
+		</form>
+<!-- end form -->
+  </div>
+</div>

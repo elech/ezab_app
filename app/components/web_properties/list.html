@@ -1,0 +1,8 @@
+<ul>
+	<li ng-repeat="prop in web_properties" style="height:50px;">
+		{{prop.name}}
+		<button type="button" class="btn btn-success pull-right"
+			ng-click="editProperty(prop)"
+		>Edit</button>
+	</li>
+</ul>
