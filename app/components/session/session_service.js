@@ -1,5 +1,5 @@
 'use-strict';
-EZAB_APP.service('Session', ['$rootScope', '$http', '$window', function($rootScope, $http, $window){
+EZAB_APP.service('Session', ['$rootScope', '$http', '$window', '$q', function($rootScope, $http, $window, $q){
 	this.getToken = function(){
 		return $window.sessionStorage.getItem("token");
 	};
@@ -10,11 +10,20 @@ EZAB_APP.service('Session', ['$rootScope', '$http', '$window', function($rootSco
 
 	this.createToken = function(username, password){
 		var that = this;
-		return $http.post('/tokens', {username: username, password: password}).then(function(res){
-			if(res.status === 201){
-				that.setToken(res.data.token);
-			}
-		});
+		var deferred = $q.defer();
+		if(!username.$valid || !password.$valid){
+			deferred.reject('Username/password not valid');
+		}else{
+			$http.post('/tokens', {username: username, password: password}).then(function(res){
+				if(res.status === 201){
+					that.setToken(res.data.token);
+					deferred.resolve(res);
+				}else{
+					deferred.reject(res);
+				}
+			});
+		}
+		return deferred.promise;
 	};
 
 	this.logout = function(){

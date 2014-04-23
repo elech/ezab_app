@@ -1,6 +1,9 @@
-EZAB_APP.controller('loginHomeCtrl', ['$scope', 'Session', function($scope, Session){
+EZAB_APP.controller('loginHomeCtrl', ['$scope', 'Session', '$location', function($scope, Session, $location){
 	$scope.login = function(form){
-		console.log(form);
-		Session.createToken(form.username)
+		Session.createToken(form.username, form.password).then(function(res){
+			$location.path('/dash');
+		}, function(err){
+			//err
+		})
 	};
 }]);

@@ -30,7 +30,9 @@ describe('Session service', function(){
 	it('should save the token on fetch', inject(function(Session, $httpBackend){
 		$httpBackend.when('POST', '/tokens').respond(201, {token: token});
 		$httpBackend.expectPOST('/tokens');
-		Session.createToken()
+		var username = {$valid: true, $modelValue: 'abc123'}
+		var password = {$valid: true, $modelValue: 'password'}
+		Session.createToken(username, password)
 		$httpBackend.flush();
 		expect(Session.getToken()).toEqual(token);
 	}))
