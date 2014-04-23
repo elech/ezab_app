@@ -1,0 +1,11 @@
+header{
+	display:block;
+}
+
+#header-padding{
+	margin-top:60px;
+}
+
+.navbar-fixed-top{
+	border-radius: 0;
+}

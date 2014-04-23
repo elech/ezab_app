@@ -4,7 +4,8 @@ angular.module('ezab_app', ['ui.router']).config(['$stateProvider', function($st
 		.state('login', {
 			url: '',
 			views: {
-				'header': { template: 'wat'}
+				'header': { template: ''},
+				'main': {templateUrl: '/public/components/login/login.html'}
 			}
 		});
 }]);

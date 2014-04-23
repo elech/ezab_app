@@ -14,8 +14,12 @@ var lib_js = [
 
 var src_js = [
   'app/app.js',
-  'app/**/*.js'
+  'app/**/**/*.js'
 ];
+
+var views = [
+  'app/components/**/*.html'
+]
 
 
 
@@ -35,7 +39,7 @@ gulp.task('livereload', function(){
 
 gulp.task('views', function(){
   gulp.src(views)
-    .pipe(gulp.dest('dist/views/'))
+    .pipe(gulp.dest('build/public/components/'))
 });
 
 gulp.task('lint', function(){
@@ -108,7 +112,7 @@ gulp.task('build', function(){
 
 gulp.task('dev', ['test', 'staticsvr'], function(){
   var lr = livereload();
-  gulp.watch(src_js, ['build']).on('change', function(file){
+  gulp.watch(src_js.concat(views), ['build', 'views']).on('change', function(file){
     lr.changed(file.path)
   });
 
