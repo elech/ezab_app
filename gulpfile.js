@@ -62,9 +62,9 @@ gulp.task('concat', function(){
 })
 
 gulp.task('css', function(){
-  gulp.src(['vendor/bootstrap.css', 'app/components/**/*.css'])
+  gulp.src(['bower_components/bootstrap/dist/css/bootstrap.css', 'app/components/**/*.css'])
     .pipe(concat('main.css'))
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('build/public/'))
 })
 
 gulp.task('karma-unit', function(){
@@ -112,7 +112,7 @@ gulp.task('build', function(){
 
 gulp.task('dev', ['test', 'staticsvr'], function(){
   var lr = livereload();
-  gulp.watch(src_js.concat(views), ['build', 'views']).on('change', function(file){
+  gulp.watch(src_js.concat(views), ['build', 'views', 'css']).on('change', function(file){
     lr.changed(file.path)
   });
 
