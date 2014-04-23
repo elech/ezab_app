@@ -1,8 +1,9 @@
 <ul>
-	<li ng-repeat="prop in web_properties" style="height:50px;">
+	<li ng-repeat="prop in WebPropertiesService.webproperties" style="height:50px;">
 		{{prop.name}}
 		<button type="button" class="btn btn-success pull-right"
-			ng-click="editProperty(prop)"
+			ng-click="editWebproperty($index)"
 		>Edit</button>
 	</li>
 </ul>
+{{currentWebpropertyIndex}}

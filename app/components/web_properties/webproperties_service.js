@@ -1,30 +1,36 @@
 'use-strict';
 EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', function($rootScope, $http, $state){
-	var web_properties = [],
-		current_prop = {},
-		that = this;
+	var that = this
 
-	this.getCurrentProperty = function(){
-		return current_prop;
-	}
+	this.webproperties = [];
 
-	this.setCurrentProperty = function(webprop){
-		angular.copy(webprop, current_prop);
-	}
+	this.currentWebpropertyIndex = null;
 
-	this.getWebproperties = function(){
-		return web_properties;
-	}
-	
-	this.editWebproperty = function(webprop){
-		that.setCurrentProperty(webprop);
-		$state.go('webprops.edit');
+	this.tmpWebproperty;
+
+	this.putWebproperty = function(){
+		return $http.put('/webproperties/' + this.tmpWebproperty.id, this.tmpWebproperty).then(function(res){
+			if(res.status === 200){
+				angular.copy(res.data, that.webproperties[that.currentWebpropertyIndex]);
+			}
+		})
 	}
 
 	this.fetchWebproperties = function(){
 		return $http.get('/webproperties').then(function(res){
 			if(res.status === 200){
-				angular.copy(res.data, web_properties);
+				angular.copy(res.data, that.webproperties);
+			}
+		})
+	}
+
+	this.createWebproperty = function(propForm){
+		return $http.post('/webproperties', {name: propForm.name.$modelValue, url: propForm.url.$modelValue} ).then(function(res){
+			console.log(res);
+			if(res.status === 201){
+				var tmpProps = angular.copy(that.webproperties);
+				tmpProps.push(res.data);
+				angular.copy(tmpProps, that.webproperties);
 			}
 		})
 	}

@@ -1,8 +1,9 @@
-EZAB_APP.controller('webPropertiesMainCtrl', ['$scope', 'WebPropertiesService', function($scope, WebPropertiesService){
-	$scope.web_properties = WebPropertiesService.getWebproperties();
+EZAB_APP.controller('webPropertiesMainCtrl', ['$scope', 'WebPropertiesService', '$state', function($scope, WebPropertiesService, $state){
 	WebPropertiesService.fetchWebproperties();
-
-	$scope.current_prop = WebPropertiesService.getCurrentProperty();
-
-	$scope.editProperty = WebPropertiesService.editWebproperty;
+	$scope.WebPropertiesService = WebPropertiesService;
+	$scope.editWebproperty = function($index){
+		$state.go('webprops.edit');
+		$scope.WebPropertiesService.tmpWebproperty = angular.copy($scope.WebPropertiesService.webproperties[$index]);
+		$scope.WebPropertiesService.currentWebpropertyIndex = $index;
+	}
 }]);
