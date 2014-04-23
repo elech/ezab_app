@@ -1,0 +1,17 @@
+{
+  "name": "ezab_app",
+  "version": "0.0.0",
+  "description": "Admin web app. Administer your A/B tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Lech",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.6.1",
+    "karma": "^0.12.9",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-jasmine": "^0.1.5"
+  }
+}
