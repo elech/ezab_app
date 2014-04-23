@@ -124,5 +124,5 @@ gulp.task('dev', ['test', 'staticsvr'], function(){
 });
 
 gulp.task('test', function(){
-  gulp.watch(src_js, ['lint', 'karma-unit']);
+  gulp.watch(src_js.concat(['test/unit/*.js']), ['lint', 'karma-unit']);
 })
