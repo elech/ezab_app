@@ -1,8 +1,23 @@
-<ul ng-controller="webpropertiesListCtrl">
+<ul class="list-group"
+		ng-controller="webpropertiesListCtrl">
+  <li class="list-group-item"
+  		ng-repeat="prop in WebPropertiesService.webproperties">
+  		<a ng-click="WebPropertiesService.selectWebproperty($index)">
+  			{{prop.name}}
+  		</a>
+  		<span class="badge">
+  			<span class="glyphicon glyphicon-wrench"
+  						ng-click="editWebproperty($index)"
+  			></span>
+  		</span>
+  </li>
+</ul>
+
+<ul >
 	<li ng-repeat="prop in WebPropertiesService.webproperties" style="height:50px;">
 		<a ng-click="WebPropertiesService.selectWebproperty($index)">{{prop.name}}</a>
 		<button type="button" class="btn btn-success pull-right"
-			ng-click="editWebproperty($index)"
+			
 		>Edit</button>
 	</li>
 </ul>

@@ -51,7 +51,7 @@ gulp.task('concat', function(){
 })
 
 gulp.task('css', function(){
-  gulp.src(['bower_components/bootstrap/dist/css/bootstrap.css', 'app/components/**/*.css'])
+  gulp.src(['bower_components/bootstrap/dist/css/bootstrap.css', 'app/components/main.css', 'app/components/**/*.css'])
     .pipe(concat('main.css'))
     .pipe(gulp.dest('build/public/'))
 })
