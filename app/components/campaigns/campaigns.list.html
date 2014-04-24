@@ -1,8 +1,14 @@
-<ul ng-controller="campaignsListCtrl">
-	<li ng-repeat="camp in CampaignService.campaigns" style="height:50px;">
-		<a ng-click="selectCampaign($index)">{{camp.name}}</a>
-		<button type="button" class="btn btn-success pull-right"
-			ng-click="editCampaign($index)"
-		>Edit</button>
-	</li>
+<ul class="list-group"
+		ng-controller="campaignsListCtrl">
+  <li class="list-group-item"
+  		ng-repeat="camp in CampaignService.campaigns">
+  		<a ng-click="selectCampaign($index)">
+  			{{camp.name}}
+  		</a>
+  		<span class="badge">
+  			<span class="glyphicon glyphicon-wrench"
+  						ng-click="editCampaign($index)"
+  			></span>
+  		</span>
+  </li>
 </ul>

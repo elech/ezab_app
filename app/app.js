@@ -13,8 +13,8 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 			views: {
 				'header': {templateUrl: '/public/components/header/header.html'},
 				'main': {templateUrl: '/public/components/dash/main.html'},
-				'camplist@dash': {templateUrl: '/public/components/dash/campaign.list.html'},
-				'campcontrol@dash': {template: 'lol wat'},
+				'explist@dash': {templateUrl: '/public/components/dash/campaign.list.html'},
+				'expcontrol@dash': {template: 'lol wat'},
 				'graph@dash': {template: 'DAT GRAPH'}
 			}
 		})
