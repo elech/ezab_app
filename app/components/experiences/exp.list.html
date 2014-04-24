@@ -1,0 +1,11 @@
+<ul class="list-group"
+		ng-controller="experiencesListCtrl">
+  <li class="list-group-item"
+  		ng-repeat="exp in ExperienceService.experiences">
+      {{exp.name}}
+  		<span class="badge">
+  			<span class="glyphicon glyphicon-wrench"
+  			></span>
+  		</span>
+  </li>
+</ul>

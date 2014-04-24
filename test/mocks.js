@@ -4,6 +4,10 @@ var EZAB_DEV	= angular.module('EZAB_DEV', ['EZAB_APP', 'ngMockE2E']).run(functio
 			return [201, {token: 'abc123secure'}];
 		})
 
+		$httpBackend.whenGET(/webproperties\/\d+\/campaigns\/\d+\/experiences/).respond(function(){
+			return [200, [{id:1, name: 'Red header', code: '$("#header").css({"background-color": "red"});'}, {id:1, name: 'Red button', code: '$("#header").css({"background-color": "red"});'}]]	
+		})
+
 		$httpBackend.whenGET('/webproperties').respond(function(method){
 			return [200, [{id: 1, name: 'Amazon Web Services', url: 'http://aws.amazon.com'}, {id:2, name: 'Amazon', url: 'http://amazon.com'}]];
 		})
@@ -34,7 +38,8 @@ var EZAB_DEV	= angular.module('EZAB_DEV', ['EZAB_APP', 'ngMockE2E']).run(functio
 
 		$httpBackend.whenGET(/webproperties\/\d+\/campaigns\/2/).respond(function(method){
 			return [200, {id: 2, name: 'Other page', start: 'return window.location.pathname === "/wat"', success: 'return window.location.pathname === "/thankyou2"'}];
-		})
+		});
+
 		
 		$httpBackend.whenGET(/\/public\/components\/.*\/.*html/).passThrough();
 	});
