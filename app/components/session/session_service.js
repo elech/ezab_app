@@ -10,20 +10,11 @@ EZAB_APP.service('Session', ['$rootScope', '$http', '$window', '$q', function($r
 
 	this.createToken = function(username, password){
 		var that = this;
-		var deferred = $q.defer();
-		if(!username.$valid || !password.$valid){
-			deferred.reject('Username/password not valid');
-		}else{
-			$http.post('/tokens', {username: username, password: password}).then(function(res){
-				if(res.status === 201){
-					that.setToken(res.data.token);
-					deferred.resolve(res);
-				}else{
-					deferred.reject(res);
-				}
-			});
-		}
-		return deferred.promise;
+		return $http.post('/tokens', {username: username, password: password}).then(function(res){
+			if(res.status === 201){
+				that.setToken(res.data.token);
+			}
+		});
 	};
 
 	this.logout = function(){

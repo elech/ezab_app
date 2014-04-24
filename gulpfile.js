@@ -96,7 +96,7 @@ gulp.task('staticsvr', function(next){
 gulp.task('build', function(){
   return gulp.src(lib_js.concat(['bower_components/angular-mocks/angular-mocks.js', 'test/mocks.js', 'bower_components/jquery/dist/jquery.js' , 'bower_components/bootstrap/js/dropdown.js'].concat(src_js)))
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('build/public/'));
 })
 
 gulp.task('dev', ['test', 'staticsvr'], function(){
@@ -111,6 +111,29 @@ gulp.task('dev', ['test', 'staticsvr'], function(){
 
   //watch css and sass them
 });
+
+gulp.task('prodbuild', function(){
+  return gulp.src(lib_js.concat(['bower_components/angular-mocks/angular-mocks.js', 'bower_components/jquery/dist/jquery.js' , 'bower_components/bootstrap/js/dropdown.js'].concat(src_js)))
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest('dist/public/'));
+})
+
+gulp.task('prodviews', function(){
+  gulp.src(views)
+    .pipe(gulp.dest('dist/public/components/'))
+});
+
+gulp.task('prodcss', function(){
+  gulp.src(['bower_components/bootstrap/dist/css/bootstrap.css', 'app/components/main.css', 'app/components/**/*.css'])
+    .pipe(concat('main.css'))
+    .pipe(gulp.dest('dist/public/'))
+})
+
+//get it ready to place in the api
+gulp.task('dist', ['prodbuild',  'prodviews', 'prodcss'], function(){
+  //wat
+})
+
 
 gulp.task('test', function(){
   gulp.watch(src_js.concat(['test/unit/*.js']), ['lint', 'karma-unit']);
