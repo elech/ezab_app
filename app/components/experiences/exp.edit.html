@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Edit</div>
+  <div class="panel-body">
+    <!-- start form -->
+    <form role="form" name="campaignAddForm" novalidate>
+		  <div class="form-group" ng-class="{'has-error': campaignAddForm.name.$invalid && campaignAddForm.name.$dirty}">
+		    <label for="name">Name</label>
+		    <span class="label label-danger pull-right" ng-show="campaignAddForm.name.$error.required && campaignAddForm.name.$dirty">Required</span>
+		    <input type="text" class="form-control" name="name" placeholder="Name" required ng-model="tmp.name">
+		  </div>
+		  <div class="form-group" ng-class="{'has-error': campaignAddForm.start.$invalid && campaignAddForm.start.$dirty}">
+		    <label for="start">Code</label>
+		    <span class="label label-danger pull-right" ng-show="campaignAddForm.start.$error.required && campaignAddForm.start.$dirty">Required</span>
+		    <textarea class="form-control" name="code" placeholder="return true;" required ng-model="tmp.code"></textarea>
+		  </div>
+		  <button type="submit" class="btn btn-default" ng-click="(campaignAddForm)" ng-disable="{campaignAddForm.$valid && campaignAddForm.$dirty}">Save</button>
+		</form>
+<!-- end form -->
+  </div>
+</div>

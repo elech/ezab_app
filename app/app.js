@@ -14,8 +14,15 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 				'header': {templateUrl: '/public/components/header/header.html'},
 				'main': {templateUrl: '/public/components/dash/main.html'},
 				'explist@dash': {templateUrl: '/public/components/experiences/exp.list.html'},
-				'expcontrol@dash': {template: 'lol wat'},
-				'graph@dash': {template: 'DAT GRAPH'}
+				'expcontrol@dash': {templateUrl: '/public/components/experiences/exp.add.html'},
+				'graph': {template: 'DAT GRAPH'}
+			}
+		})
+				
+		.state('dash.edit', {
+			//url: '/webproperties/:propid/campaigns/:cid/dashboard',
+			views: {
+				'expcontrol@dash': {templateUrl: '/public/components/experiences/exp.edit.html'},
 			}
 		})
 		
