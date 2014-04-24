@@ -21,17 +21,6 @@ var views = [
   'app/components/**/*.html'
 ]
 
-
-
-//gulp.task('dev', ['staticsvr'], function(){
-//  var lr = livereload();
-//  gulp.watch(['test/unit/*.js'].concat(sourceJSFiles), ['lint', 'karma-unit']);
-//  gulp.watch(['app/*.html', 'app/components/**/*.html', 'app/components/**/*.css'].concat(sourceJSFiles), ['concat', 'views', 'css']).on('change', function(file){
-//    console.log('css')
-//    lr.changed(file.path);
-//  })
-//});
-
 gulp.task('livereload', function(){
   var server = livereload();
   gulp.watch('dist/*').on('')

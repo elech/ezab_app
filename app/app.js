@@ -12,7 +12,10 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 			url: '/dash',
 			views: {
 				'header': {templateUrl: '/public/components/header/header.html'},
-				'main': {template: 'asdf'}
+				'main': {templateUrl: '/public/components/dash/main.html'},
+				'camplist@dash': {templateUrl: '/public/components/dash/campaign.list.html'},
+				'campcontrol@dash': {template: 'lol wat'},
+				'graph@dash': {template: 'DAT GRAPH'}
 			}
 		})
 		.state('webprops', {
@@ -33,4 +36,23 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 				'propcontrol@webprops': {templateUrl: '/public/components/web_properties/edit.html'}
 			}
 		})
+
+		.state('campaigns', {
+			url: '/campaigns',
+			views: {
+				'header': {templateUrl: '/public/components/header/header.html'},
+				'main': {templateUrl: '/public/components/campaigns/main.html'},
+				'campaignlist@campaigns': {templateUrl: '/public/components/campaigns/campaigns.list.html'},
+				'campaigncontrol@campaigns': {templateUrl: '/public/components/campaigns/campaigns.add.html'}
+			}
+		})
+/*		.state('campaigns.edit', {
+			url: '/campaigns/edit',
+			views: {
+				'header': {templateUrl: '/public/components/header/header.html'},
+				'main': {templateUrl: '/public/components/web_properties/main.html'},
+				'proplist@webprops': {templateUrl: '/public/components/web_properties/list.html'},
+				'propcontrol@webprops': {templateUrl: '/public/components/web_properties/edit.html'}
+			}
+		})*/
 }])
