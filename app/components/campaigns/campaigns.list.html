@@ -1,8 +1,8 @@
-<ul>
+<ul ng-controller="campaignsListCtrl">
 	<li ng-repeat="camp in CampaignService.campaigns" style="height:50px;">
-		<a ng-click="selectWebproperty($index)">{{camp.name}}</a>
+		<a ng-click="selectCampaign($index)">{{camp.name}}</a>
 		<button type="button" class="btn btn-success pull-right"
-			ng-click="editWebproperty($index)"
+			ng-click="editCampaign($index)"
 		>Edit</button>
 	</li>
 </ul>

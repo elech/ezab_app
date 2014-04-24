@@ -9,7 +9,7 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 			}
 		})
 		.state('dash', {
-			url: '/dash',
+			url: '/webproperties/:propid/campaigns/:cid/dashboard',
 			views: {
 				'header': {templateUrl: '/public/components/header/header.html'},
 				'main': {templateUrl: '/public/components/dash/main.html'},
@@ -18,17 +18,21 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 				'graph@dash': {template: 'DAT GRAPH'}
 			}
 		})
+		
 		.state('webprops', {
 			url: '/webproperties',
 			views: {
 				'header': {templateUrl: '/public/components/header/header.html'},
 				'main': {templateUrl: '/public/components/web_properties/main.html'},
-				'proplist@webprops': {templateUrl: '/public/components/web_properties/list.html'},
+				'proplist@webprops': {
+					templateUrl: '/public/components/web_properties/list.html'
+				},
 				'propcontrol@webprops': {templateUrl: '/public/components/web_properties/add.html'}
 			}
 		})
+
 		.state('webprops.edit', {
-			url: '/webproperties',
+			url: '/:propid/edit',
 			views: {
 				'header': {templateUrl: '/public/components/header/header.html'},
 				'main': {templateUrl: '/public/components/web_properties/main.html'},
@@ -38,7 +42,7 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 		})
 
 		.state('campaigns', {
-			url: '/campaigns',
+			url: '/webproperties/:propid/campaigns',
 			views: {
 				'header': {templateUrl: '/public/components/header/header.html'},
 				'main': {templateUrl: '/public/components/campaigns/main.html'},
@@ -46,13 +50,13 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 				'campaigncontrol@campaigns': {templateUrl: '/public/components/campaigns/campaigns.add.html'}
 			}
 		})
-/*		.state('campaigns.edit', {
-			url: '/campaigns/edit',
+		.state('campaigns.edit', {
+			url: '/:cid/edit',
 			views: {
 				'header': {templateUrl: '/public/components/header/header.html'},
-				'main': {templateUrl: '/public/components/web_properties/main.html'},
-				'proplist@webprops': {templateUrl: '/public/components/web_properties/list.html'},
-				'propcontrol@webprops': {templateUrl: '/public/components/web_properties/edit.html'}
+				'main': {templateUrl: '/public/components/campaigns/main.html'},
+				'campaignlist@campaigns': {templateUrl: '/public/components/campaigns/campaigns.list.html'},
+				'campaigncontrol@campaigns': {templateUrl: '/public/components/campaigns/campaigns.edit.html'}
 			}
-		})*/
+		})
 }])

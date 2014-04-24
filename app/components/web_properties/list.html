@@ -1,6 +1,6 @@
-<ul>
+<ul ng-controller="webpropertiesListCtrl">
 	<li ng-repeat="prop in WebPropertiesService.webproperties" style="height:50px;">
-		<a ng-click="selectWebproperty($index)">{{prop.name}}</a>
+		<a ng-click="WebPropertiesService.selectWebproperty($index)">{{prop.name}}</a>
 		<button type="button" class="btn btn-success pull-right"
 			ng-click="editWebproperty($index)"
 		>Edit</button>

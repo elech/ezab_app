@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" ng-controller="webpropertiesEditCtrl">
   <!-- Default panel contents -->
   <div class="panel-heading">Edit Web Property</div>
   <div class="panel-body">
@@ -7,12 +7,12 @@
 		  <div class="form-group" ng-class="{'has-error': propAddForm.username.$invalid && propAddForm.name.$dirty}">
 		    <label for="username">Name</label>
 		    <span class="label label-danger pull-right" ng-show="propAddForm.username.$error.required && propAddForm.username.$dirty">Required</span>
-		    <input type="text" class="form-control" name="name" placeholder="Name" required ng-model="WebPropertiesService.tmpWebproperty.name">
+		    <input type="text" class="form-control" name="name" placeholder="Name" required ng-model="tmpWebproperty.name">
 		  </div>
 		  <div class="form-group" ng-class="{'has-error': propAddForm.password.$invalid && propAddForm.password.$dirty}">
 		    <label for="url">URL</label>
 		    <span class="label label-danger pull-right" ng-show="propAddForm.password.$error.required && propAddForm.password.$dirty">Required</span>
-		    <input type="url" class="form-control" name="url" placeholder="http://www.mydomain.com" required ng-model="WebPropertiesService.tmpWebproperty.url">
+		    <input type="url" class="form-control" name="url" placeholder="http://www.mydomain.com" required ng-model="tmpWebproperty.url">
 		  </div>
 		  <button type="submit" class="btn btn-default" ng-click="WebPropertiesService.putWebproperty(currentWebpropertyIndex)" ng-disable="{propAddForm.$valid && propAddForm.$dirty}">Edit</button>
 		</form>

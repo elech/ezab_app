@@ -1,17 +1,31 @@
 'use-strict';
-EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', function($rootScope, $http, $state){
+EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', '$stateParams', function($rootScope, $http, $state, $stateParams){
 	var that = this
-
 	this.webproperties = [];
+	this.currentWebproperty = {}
 
-	this.currentWebpropertyIndex = null;
+	$http.get('/webproperties').success(function(data, status, headers){
+		angular.copy(data, that.webproperties);
+	});
 
-	this.tmpWebproperty;
+	$rootScope.$watch(function(){
+		return $stateParams.propid;
+	}, function(newVal, oldVal){
+		if(newVal != null){
+			that.getWebproperty(newVal).success(function(data, status, headers){
+				angular.copy(data, that.currentWebproperty);
+			})
+		}
+	})
 
-	this.putWebproperty = function(){
-		return $http.put('/webproperties/' + this.tmpWebproperty.id, this.tmpWebproperty).then(function(res){
+	this.getWebproperty = function(propid){
+		return $http.get('/webproperties/' + propid);
+	}
+
+	this.putWebproperty = function(data){
+		return $http.put('/webproperties/' + $stateParams.propid, data).then(function(res){
 			if(res.status === 200){
-				angular.copy(res.data, that.webproperties[that.currentWebpropertyIndex]);
+				that.fetchWebproperties();
 			}
 		})
 	}
@@ -24,14 +38,17 @@ EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', funct
 		})
 	}
 
-	this.createWebproperty = function(propForm){
+/*	this.createWebproperty = function(propForm){
 		return $http.post('/webproperties', {name: propForm.name.$modelValue, url: propForm.url.$modelValue} ).then(function(res){
-			console.log(res);
 			if(res.status === 201){
 				var tmpProps = angular.copy(that.webproperties);
 				tmpProps.push(res.data);
 				angular.copy(tmpProps, that.webproperties);
 			}
 		})
+	}*/
+
+	this.selectWebproperty = function($index){
+		$state.go('campaigns', {propid: that.webproperties[$index].id})
 	}
 }]);
