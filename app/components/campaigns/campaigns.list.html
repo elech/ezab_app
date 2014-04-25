@@ -2,7 +2,7 @@
 		ng-controller="campaignsListCtrl">
   <li class="list-group-item"
   		ng-repeat="camp in CampaignService.campaigns">
-  		<a ng-click="selectCampaign($index)">
+  		<a ng-click="CampaignService.selectCampaign($index)">
   			{{camp.name}}
   		</a>
   		<span class="badge">

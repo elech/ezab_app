@@ -28,10 +28,10 @@
         <a href="" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tower"></span><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li ng-repeat="campaign in CampaignService.campaigns">
-            <a href="#">{{campaign.name}}</a>
+            <a ng-click="CampaignService.selectCampaign($index)">{{campaign.name}}</a>
           </li>
           <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
+          <li><a ui-sref="campaigns({propid: WebPropertiesService.currentWebproperty.id})">Listing</a></li>
         </ul>
       </li>
       <li><a href="">{{CampaignService.currentCampaign.name}}</a></li>
@@ -46,7 +46,7 @@
           <li><a href="#">Another action</a></li>
           <li><a href="#">Something else here</a></li>
           <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
+          
         </ul>
       </li>
     </ul>

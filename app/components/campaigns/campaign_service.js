@@ -1,5 +1,5 @@
 'use-strict';
-EZAB_APP.service('CampaignService', ['$rootScope', '$http', 'WebPropertiesService', '$state', '$stateParams', function($rootScope, $http, WebPropertiesService, $state, $stateParams){
+EZAB_APP.service('CampaignService', ['$rootScope', '$http', 'WebPropertiesService', '$state', '$stateParams', '$q', function($rootScope, $http, WebPropertiesService, $state, $stateParams, $q){
 	var that = this;
 	this.campaigns = [];
 	this.currentCampaign = {};
@@ -33,17 +33,22 @@ EZAB_APP.service('CampaignService', ['$rootScope', '$http', 'WebPropertiesServic
 		return $http.put('/webproperties/' + propid + '/campaigns/' + campaign.id, {name: campaign.name, start: campaign.start, success: campaign.success}).then(function(res){
 			if(res.status === 200){
 				that.getCampaigns(propid);
+				angular.copy(res.data, that.currentCampaign);
 			}
 		})
 	}
 
 	this.createCampaign = function(propid, campaign){
-		return $http.post('/webproperties/' + propid + '/campaigns', campaign).then(function(res){
+		var deferred = $q.defer();
+		$http.post('/webproperties/' + propid + '/campaigns', campaign).then(function(res){
 			if(res.status === 201){
 				that.getCampaigns(propid);
+				deferred.resolve(res);
+			}else{
+				deferred.reject(res);
 			}
 		})
-
+		return deferred.promise;
 	}
 
 	this.getCampaign = function(cid){
