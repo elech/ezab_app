@@ -16,6 +16,7 @@ EZAB_APP.controller('campaignsEditCtrl', ['$scope', 'CampaignService', '$statePa
 		$scope.CampaignService.deleteCampaign($stateParams.propid, $scope.tmp).then(function(res){
 			if(res.status === 200){
 				$state.go('campaigns', {cid: null});
+				$scope.CampaignService.currentCampaign = {};
 			}
 		})
 	}
