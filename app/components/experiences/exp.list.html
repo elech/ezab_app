@@ -1,10 +1,14 @@
 <div class="panel panel-info"
     ng-controller="experiencesListCtrl">
   <!-- Default panel contents -->
-  <div class="panel-heading">Panel heading</div>
-  <div class="panel-body">
-    <button class="btn btn-success">Add</button>
+  <div class="panel-heading">
+    Experiences
+    <button class="btn btn-primary pull-right btn-xs" 
+      ng-click="addExperience()">
+      Add
+    </button>
   </div>
+    
     <ul class="list-group">
       <li class="list-group-item" ng-click="editExperience($index)"
       		ng-repeat="exp in ExperienceService.experiences">

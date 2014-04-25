@@ -36,11 +36,16 @@ EZAB_APP.service('ExperienceService', ['$rootScope', '$http', '$state', '$stateP
 	}
 
 	this.createExperience = function(propid, cid, exp){
-		return $http.post('/webproperties/' + propid + '/campaigns/' + cid + '/experiences', {name: exp.name, code: exp.code}).then(function(res){
+		var deferred = $q.defer();
+		$http.post('/webproperties/' + propid + '/campaigns/' + cid + '/experiences', {name: exp.name, code: exp.code}).then(function(res){
 			if(res.status === 201){
 				that.getExperiences(propid, cid);
+				deferred.resolve(res);
+			}else{
+				deferred.reject(res);
 			}
 		})
+		return deferred.promise;
 	}
 
 	this.deleteExperience = function(propid, cid, eid){

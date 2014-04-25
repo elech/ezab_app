@@ -20,12 +20,11 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 		})
 				
 		.state('dash.edit', {
-			//url: '/webproperties/:propid/campaigns/:cid/dashboard',
 			views: {
 				'expcontrol@dash': {templateUrl: '/public/components/experiences/exp.edit.html'},
 			}
 		})
-		
+
 		.state('webprops', {
 			url: '/webproperties',
 			views: {

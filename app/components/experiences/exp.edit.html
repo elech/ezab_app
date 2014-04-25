@@ -14,7 +14,11 @@
 		    <span class="label label-danger pull-right" ng-show="expEditForm.start.$error.required && expEditForm.start.$dirty">Required</span>
 		    <textarea class="form-control" name="code" placeholder="return true;" required ng-model="tmp.code"></textarea>
 		  </div>
-		  <button type="submit" class="btn btn-default" ng-click="editExperience()" ng-disabled="expEditForm.$invalid">Save</button>
+		  <button class="btn btn-success" 
+		  	ng-click="editExperience()" 
+		  	ng-disabled="expEditForm.$invalid || expEditForm.$pristine">
+		  	Save
+		  </button>
 		  <button class="btn btn-danger" ng-click="delExperience()">Delete</button>
 		</form>
 <!-- end form -->

@@ -24,4 +24,12 @@ EZAB_APP.controller('experiencesControlCtrl', ['$scope', '$state', '$stateParams
 		})
 	}
 
+	$scope.createExperience = function(){
+		ExperienceService.createExperience($stateParams.propid, $stateParams.cid, {name: $scope.tmp.name, code: $scope.tmp.code}).then(function(res){
+			if(res.status === 201){
+				ExperienceService.showModalControl = false;
+			}
+		})
+	}
+
 }]);

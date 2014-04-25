@@ -7,4 +7,9 @@ EZAB_APP.controller('experiencesListCtrl', ['$scope', '$state', '$stateParams', 
 		$state.go('dash.edit');
 		ExperienceService.setCurrentExperience(ExperienceService.experiences[$index]);
 	}
+
+	$scope.addExperience = function($index){
+		ExperienceService.showModalControl = true;
+		$state.go('dash');
+	}
 }]);
