@@ -6,7 +6,12 @@ EZAB_APP.controller('webpropertiesEditCtrl', ['$scope', 'WebPropertiesService', 
 		url: angular.copy($scope.WebPropertiesService.currentWebproperty.url),
 		id: angular.copy($scope.WebPropertiesService.currentWebproperty.id)
 	}
+
 	$scope.editSubmit = function(){
 		$scope.WebPropertiesService.putWebproperty($scope.tmpWebproperty);
+	}
+
+	$scope.delProp = function(){
+		$scope.WebPropertiesService.deleteWebproperty($scope.tmpWebproperty.id);
 	}
 }]);
