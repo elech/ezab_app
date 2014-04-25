@@ -56,11 +56,16 @@ EZAB_APP.service('CampaignService', ['$rootScope', '$http', 'WebPropertiesServic
 	}
 
 	this.deleteCampaign = function(propid, campaign){
-		return $http.delete('/webproperties/'+propid+'/campaigns/' + campaign.id).then(function(res){
+		var deferred = $q.defer();
+		$http.delete('/webproperties/'+propid+'/campaigns/' + campaign.id).then(function(res){
 			if(res.status === 200){
 				that.getCampaigns(propid);
+				deferred.resolve(res);
+			}else{
+				deferred.reject(res);
 			}
 		})
+		return deferred.promise;
 	}
 
 	this.selectCampaign = function($index){

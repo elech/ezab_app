@@ -20,7 +20,8 @@
 		    <span class="label label-danger pull-right" ng-show="campaignEditForm.success.$error.required && campaignEditForm.success.$dirty">Required</span>
 		    <textarea class="form-control" name="success" placeholder="return true;" required ng-model="tmp.success"></textarea>
 		  </div>
-		  <button type="submit" class="btn btn-default" ng-click="editCampaign()" ng-disabled="campaignEditForm.$invalid">Edit</button>
+		  <button type="submit" class="btn btn-success" ng-click="editCampaign()" ng-disabled="campaignEditForm.$invalid || campaignEditForm.$pristine">Edit</button>
+		  <button type="submit" class="btn btn-danger" ng-click="delCampaign()">Delete</button>
 		</form>
 <!-- end form -->
   </div>

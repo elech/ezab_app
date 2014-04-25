@@ -1,4 +1,4 @@
-EZAB_APP.controller('campaignsEditCtrl', ['$scope', 'CampaignService', '$stateParams', function($scope, CampaignService, $stateParams){
+EZAB_APP.controller('campaignsEditCtrl', ['$scope', 'CampaignService', '$stateParams', '$state', function($scope, CampaignService, $stateParams, $state){
 	$scope.CampaignService = CampaignService;
 	
 	$scope.tmp = {
@@ -10,5 +10,13 @@ EZAB_APP.controller('campaignsEditCtrl', ['$scope', 'CampaignService', '$statePa
 	
 	$scope.editCampaign = function(){
 		$scope.CampaignService.editCampaign($stateParams.propid, $scope.tmp);
+	}
+
+	$scope.delCampaign = function(){
+		$scope.CampaignService.deleteCampaign($stateParams.propid, $scope.tmp).then(function(res){
+			if(res.status === 200){
+				$state.go('campaigns', {cid: null});
+			}
+		})
 	}
 }]);
