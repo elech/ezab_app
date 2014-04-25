@@ -8,9 +8,9 @@ EZAB_APP.service('Session', ['$rootScope', '$http', '$window', '$q', function($r
 		$window.sessionStorage.setItem("token", token);
 	};
 
-	this.createToken = function(username, password){
+	this.createToken = function(email, password){
 		var that = this;
-		return $http.post('/tokens', {username: username, password: password}).then(function(res){
+		return $http.post('/tokens', {email: email, password: password}).then(function(res){
 			if(res.status === 201){
 				that.setToken(res.data.token);
 			}

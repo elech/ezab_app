@@ -6,17 +6,17 @@
     	<div class="col-lg-6" ng-controller="loginHomeCtrl">
     		<!-- start form -->
     		<form role="form" name="loginHomeForm" novalidate>
-				  <div class="form-group" ng-class="{'has-error': loginHomeForm.username.$invalid && loginHomeForm.username.$dirty}">
-				    <label for="username">Username</label>
-				    <span class="label label-danger pull-right" ng-show="loginHomeForm.username.$error.required && loginHomeForm.username.$dirty">Required</span>
-				    <input type="text" class="form-control" name="username" placeholder="Username" required ng-model="username">
+				  <div class="form-group" ng-class="{'has-error': loginHomeForm.email.$invalid && loginHomeForm.email.$dirty}">
+				    <label for="email">Email</label>
+				    <span class="label label-danger pull-right" ng-show="loginHomeForm.email.$error.required && loginHomeForm.email.$dirty">Required</span>
+				    <input type="text" class="form-control" name="email" placeholder="Email" required ng-model="email">
 				  </div>
 				  <div class="form-group" ng-class="{'has-error': loginHomeForm.password.$invalid && loginHomeForm.password.$dirty}">
 				    <label for="password">Password</label>
 				    <span class="label label-danger pull-right" ng-show="loginHomeForm.password.$error.required && loginHomeForm.password.$dirty">Required</span>
 				    <input type="password" class="form-control" name="password" placeholder="Password" required ng-model="password">
 				  </div>
-				  <button id="submit_btn" type="submit" class="btn btn-primary" 
+				  <button id="submit_btn" type="submit" class="btn btn-primary"
 				  ng-click="login(loginHomeForm)" 
 				  ng-disabled="!loginHomeForm.$valid">
 				  	Submit
