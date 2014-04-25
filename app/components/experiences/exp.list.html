@@ -1,7 +1,7 @@
 <div ng-controller="experiencesListCtrl">
   <ul class="list-group">
     <li class="list-group-item" ng-click="editExperience($index)"
-    		ng-repeat="exp in experiences">
+    		ng-repeat="exp in ExperienceService.experiences">
         {{exp.name}}
     		<span class="badge">
     			<span class="glyphicon glyphicon-wrench" 

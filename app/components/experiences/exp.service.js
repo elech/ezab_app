@@ -1,5 +1,5 @@
 'use-strict';
-EZAB_APP.service('ExperienceService', ['$rootScope', '$http', '$state', '$stateParams', function($rootScope, $http, $state, $stateParams){
+EZAB_APP.service('ExperienceService', ['$rootScope', '$http', '$state', '$stateParams', '$q', function($rootScope, $http, $state, $stateParams, $q){
 	var that = this;
 	this.experiences = [];
 	this.showModalControl = false;
@@ -13,6 +13,7 @@ EZAB_APP.service('ExperienceService', ['$rootScope', '$http', '$state', '$stateP
 		return $http.get('/webproperties/' + propid + '/campaigns/' + cid + '/experiences').then(function(res){
 			if(res.status === 200){
 				angular.copy(res.data, that.experiences);
+				console.log(res.data);
 			}
 		})
 	};
@@ -23,11 +24,17 @@ EZAB_APP.service('ExperienceService', ['$rootScope', '$http', '$state', '$stateP
 
 
 	this.putExperience = function(propid, cid, exp){
-		return $http.put('/webproperties/' + propid + '/campaigns/' + cid + '/experiences/' + exp.id, {name: exp.name, code: exp.code}).then(function(res){
+		var deferred = $q.defer();
+		$http.put('/webproperties/' + propid + '/campaigns/' + cid + '/experiences/' + exp.id, {name: exp.name, code: exp.code}).then(function(res){
 			if(res.status === 200){
 				that.getExperiences(propid, cid);
+				console.log(res.data);
+				deferred.resolve(res);
+			}else{
+				deferred.reject(res);
 			}
 		})
+		return deferred.promise;
 	}
 
 	this.createExperience = function(propid, cid, exp){
