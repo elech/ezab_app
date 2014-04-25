@@ -5,6 +5,10 @@ var uglify = require('gulp-uglify');
 var karma = require('karma');
 var livereload = require('gulp-livereload');
 var jshint = require('gulp-jshint');
+var connect = require('connect');
+var serveStatic = require('serve-static');
+var proxy = require('proxy-middleware');
+var url = require('url');
 
 
 var lib_js = [
@@ -80,17 +84,19 @@ gulp.task('karma-unit', function(){
 })
 
 gulp.task('staticsvr', function(next){
-  var staticS = require('node-static'),
-    server = new staticS.Server('./' + 'build/'),
-    port = 3000;
-  require('http').createServer(function(req, res){
-    req.addListener('end', function(){
-      server.serve(req, res);
-    }).resume();
-  }).listen(port, function(){
-    console.log('listening on port ' + port);
+  var app = connect();
+
+  app.use('/tokens', proxy(url.parse('http://localhost:8000/tokens')));
+/*  app.use('/tokens', function(req, res){
+    console.log('wat');
+    return res.end('wat');
+    //proxy(url.parse('localhost:8000/webproperties')));
+  })*/
+  app.use(serveStatic('build/', {'index': 'index.html'}));
+  //app.use('/webproperties', proxy(url.parse('localhost:8000')));
+  app.listen(3000, function(){
     next();
-  })
+  });
 })
 
 gulp.task('build', function(){
