@@ -3,18 +3,18 @@
   <div class="panel-heading">Edit Web Property</div>
   <div class="panel-body">
     <!-- start form -->
-    <form role="form" name="propAddForm" novalidate>
-		  <div class="form-group" ng-class="{'has-error': propAddForm.username.$invalid && propAddForm.name.$dirty}">
+    <form role="form" name="propEditForm" novalidate>
+		  <div class="form-group" ng-class="{'has-error': propEditForm.username.$invalid && propEditForm.name.$dirty}">
 		    <label for="username">Name</label>
-		    <span class="label label-danger pull-right" ng-show="propAddForm.username.$error.required && propAddForm.username.$dirty">Required</span>
+		    <span class="label label-danger pull-right" ng-show="propEditForm.username.$error.required && propEditForm.username.$dirty">Required</span>
 		    <input type="text" class="form-control" name="name" placeholder="Name" required ng-model="tmpWebproperty.name">
 		  </div>
-		  <div class="form-group" ng-class="{'has-error': propAddForm.password.$invalid && propAddForm.password.$dirty}">
+		  <div class="form-group" ng-class="{'has-error': propEditForm.password.$invalid && propEditForm.password.$dirty}">
 		    <label for="url">URL</label>
-		    <span class="label label-danger pull-right" ng-show="propAddForm.password.$error.required && propAddForm.password.$dirty">Required</span>
+		    <span class="label label-danger pull-right" ng-show="propEditForm.password.$error.required && propEditForm.password.$dirty">Required</span>
 		    <input type="url" class="form-control" name="url" placeholder="http://www.mydomain.com" required ng-model="tmpWebproperty.url">
 		  </div>
-		  <button type="submit" class="btn btn-default" ng-click="WebPropertiesService.putWebproperty(currentWebpropertyIndex)" ng-disable="{propAddForm.$valid && propAddForm.$dirty}">Edit</button>
+		  <button type="submit" class="btn btn-default" ng-click="editSubmit()" ng-disabled="propEditForm.$invalid">Edit</button>
 		</form>
 <!-- end form -->
   </div>

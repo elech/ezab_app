@@ -1,5 +1,5 @@
 'use-strict';
-EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', '$stateParams', function($rootScope, $http, $state, $stateParams){
+EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', '$stateParams', '$q', function($rootScope, $http, $state, $stateParams, $q){
 	var that = this
 	this.webproperties = [];
 	this.currentWebproperty = {}
@@ -19,11 +19,17 @@ EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', '$sta
 	}
 
 	this.putWebproperty = function(prop){
-		return $http.put('/webproperties/' + prop.id, {name: prop.name, url: prop.url}).then(function(res){
+		var deferred = $q.defer();
+		$http.put('/webproperties/' + prop.id, {name: prop.name, url: prop.url}).then(function(res){
 			if(res.status === 200){
 				that.fetchWebproperties();
+				deferred.resolve(res);
+				angular.copy(res.data, that.currentWebproperty);
+			}else{
+				deferred.reject(res);
 			}
 		})
+		return deferred.promise;
 	}
 
 	this.fetchWebproperties = function(){
@@ -31,15 +37,22 @@ EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', '$sta
 			if(res.status === 200){
 				angular.copy(res.data, that.webproperties);
 			}
+			return 
 		})
 	}
 
 	this.createWebproperty = function(prop){
-		return $http.post('/webproperties', {name: prop.name, url: prop.url} ).then(function(res){
+		var deferred = $q.defer();
+		$http.post('/webproperties', {name: prop.name, url: prop.url} ).then(function(res){
 			if(res.status === 201){
+				deferred.resolve(res);
 				that.fetchWebproperties();
+			}else{
+				deferred.reject(res);
 			}
+
 		})
+		return deferred.promise;
 	}
 
 	this.deleteWebproperty = function(id){
