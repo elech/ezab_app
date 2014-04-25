@@ -1,5 +1,5 @@
 'use-strict';
-EZAB_APP.service('Session', ['$rootScope', '$http', '$window', '$q', function($rootScope, $http, $window, $q){
+EZAB_APP.service('Session', ['$rootScope', '$http', '$window', '$q', '$state', function($rootScope, $http, $window, $q, $state){
 	this.getToken = function(){
 		return $window.sessionStorage.getItem("token");
 	};
@@ -22,6 +22,7 @@ EZAB_APP.service('Session', ['$rootScope', '$http', '$window', '$q', function($r
 		$http.delete('/tokens').then(function(res){
 			if(res.status === 200){*/
 				$window.sessionStorage.removeItem('token');
+				$state.go('login');	
 /*				deferred.resolve(res);
 			}else{
 				deferred.reject(res);
