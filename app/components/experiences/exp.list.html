@@ -1,14 +1,24 @@
-<div ng-controller="experiencesListCtrl">
-  <ul class="list-group">
-    <li class="list-group-item" ng-click="editExperience($index)"
-    		ng-repeat="exp in ExperienceService.experiences">
-        {{exp.name}}
-    		<span class="badge">
-    			<span class="glyphicon glyphicon-wrench" 
-    			></span>
-    		</span>
-    </li>
-  </ul>
+<div class="panel panel-info"
+    ng-controller="experiencesListCtrl">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+  <div class="panel-body">
+    <button class="btn btn-success">Add</button>
+  </div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-click="editExperience($index)"
+      		ng-repeat="exp in ExperienceService.experiences">
+          {{exp.name}}
+      		<span class="badge">
+      			<span class="glyphicon glyphicon-wrench" 
+      			></span>
+      		</span>
+      </li>
+    </ul>
+
+</div>
+
+<div >
 </div>
 
 <style>

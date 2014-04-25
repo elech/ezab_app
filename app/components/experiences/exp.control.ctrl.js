@@ -16,4 +16,12 @@ EZAB_APP.controller('experiencesControlCtrl', ['$scope', '$state', '$stateParams
 		})
 	}
 
+	$scope.delExperience = function(){
+		ExperienceService.deleteExperience($stateParams.propid, $stateParams.cid, $scope.tmp.id).then(function(res){
+			if(res.status === 200){
+				ExperienceService.showModalControl = false;
+			}
+		})
+	}
+
 }]);
