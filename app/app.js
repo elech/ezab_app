@@ -1,5 +1,5 @@
 'use strict';
-var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider', function($stateProvider){
+var EZAB_APP = angular.module('EZAB_APP', ['ui.router', 'angular-flash.service', 'angular-flash.flash-alert-directive']).config(['$stateProvider', 'flashProvider', function($stateProvider, flashProvider){
 	$stateProvider
 		.state('login', {
 			url: '',
@@ -65,4 +65,6 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router']).config(['$stateProvider
 				'campaigncontrol@campaigns': {templateUrl: '/public/components/campaigns/campaigns.edit.html'}
 			}
 		})
+
+		flashProvider.errorClassnames.push('alert-danger');
 }])

@@ -9,12 +9,17 @@ EZAB_APP.service('Session', ['$rootScope', '$http', '$window', '$q', '$state', f
 	};
 
 	this.createToken = function(email, password){
+		var deferred = $q.defer();
 		var that = this;
-		return $http.post('/tokens', {email: email, password: password}).then(function(res){
+		$http.post('/tokens', {email: email, password: password}).then(function(res){
 			if(res.status === 201){
 				that.setToken(res.data.token);
+				deferred.resolve(res);
+			}else{
+				deferred.reject(res);
 			}
 		});
+		return deferred.promise;
 	};
 
 	this.logout = function(){

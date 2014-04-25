@@ -8,9 +8,12 @@ EZAB_APP.factory('sessionInterceptor', ['$rootScope', '$q', '$window', '$injecto
       return config;
     },
     responseError: function (response) {
+      var $state = $injector.get('$state');
       if (response.status === 401) {
         $window.sessionStorage.token = null;
-        $injector.get('$state').go('login');
+        if(!$state.is('login')){
+          $state.go('login');
+        }
         // handle the case where the user is not authenticated
       }
       return response || $q.when(response);

@@ -1,6 +1,9 @@
 <div class="container" style="margin-top:40px">
     <div class="page-header">
       <h1 id="container">Login</h1>
+      <div flash-alert="error" active-class="in alert" class="fade">
+      {{flash.message}}
+			</div>
     </div>
     <div class="row">
     	<div class="col-lg-6" ng-controller="loginHomeCtrl">
