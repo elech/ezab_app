@@ -11,7 +11,7 @@ EZAB_APP.service('ExperienceService', ['$rootScope', '$http', '$state', '$stateP
 
 	this.getExperiences = function(propid, cid){
 		return $http.get('/webproperties/' + propid + '/campaigns/' + cid + '/experiences').then(function(res){
-			if(res.status = 200){
+			if(res.status === 200){
 				angular.copy(res.data, that.experiences);
 			}
 		})
@@ -19,6 +19,31 @@ EZAB_APP.service('ExperienceService', ['$rootScope', '$http', '$state', '$stateP
 
 	this.getExperience = function(eid){
 		return $http.get('/webproperties/' + $stateParams.propid + "/campaigns/" + $stateParams.cid + '/experiences/' + eid);
+	}
+
+
+	this.putExperience = function(propid, cid, exp){
+		return $http.put('/webproperties/' + propid + '/campaigns/' + cid + '/experiences/' + exp.id, {name: exp.name, code: exp.code}).then(function(res){
+			if(res.status === 200){
+				that.getExperiences(propid, cid);
+			}
+		})
+	}
+
+	this.createExperience = function(propid, cid, exp){
+		return $http.post('/webproperties/' + propid + '/campaigns/' + cid + '/experiences', {name: exp.name, code: exp.code}).then(function(res){
+			if(res.status === 201){
+				that.getExperiences(propid, cid);
+			}
+		})
+	}
+
+	this.deleteExperience = function(propid, cid, eid){
+		return $http.delete('/webproperties/' + propid + '/campaigns/' + cid + '/experiences/' + eid).then(function(res){
+			if(res.status === 200){
+				that.getExperiences(propid, cid);
+			}
+		})
 	}
 
 	this.editExperience = function($index){
