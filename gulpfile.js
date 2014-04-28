@@ -93,6 +93,7 @@ gulp.task('staticsvr', function(next){
   //app.use('/webproperties', proxy(url.parse('localhost:8000')));
   app.listen(3000, function(){
     next();
+    console.log('listen');
   });
 })
 

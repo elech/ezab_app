@@ -66,4 +66,8 @@ EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', '$sta
 	this.selectWebproperty = function($index){
 		$state.go('campaigns', {propid: that.webproperties[$index].id})
 	}
+
+	this.publishWebproperty = function(propid){
+		return $http.get('/webproperties/' + propid + '/publish');
+	}
 }]);
