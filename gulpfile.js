@@ -90,6 +90,7 @@ gulp.task('staticsvr', function(next){
 
   app.use('/tokens', proxy(url.parse('http://localhost:8000/tokens')));
   app.use('/webproperties', proxy(url.parse('http://localhost:8000/webproperties')));
+  app.use('/campaigns', proxy(url.parse('http://localhost:8000/campaigns')));
   app.use(serveStatic('build/', {'index': 'index.html'}));
   //app.use('/webproperties', proxy(url.parse('localhost:8000')));
   app.listen(3000, function(){

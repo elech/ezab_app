@@ -1,10 +1,13 @@
-EZAB_APP.directive('graph', [function(){
+EZAB_APP.directive('graph', ['CampaignService', function(CampaignService){
 	return {
 		restrict: 'E',
 		template: '<svg id="graph"></svg>',
 		link: function(scope, element, attrs){
 			//{experienceId: 1234, count: 999}
-			var data = [{experienceId: 0, start: 3, success: 2}, {experienceId: 3, start: 4, success: 4}];
+			//var data = [{experienceId: 0, start: 3, success: 2}, {experienceId: 3, start: 4, success: 4}];
+
+CampaignService.getStats().success(function(data,status){
+	console.log(data);
 var margin = {top: 25, right: 75, bottom: 85, left: 85},
 				w = 600 - margin.left - margin.right,
 				h = 350 - margin.top - margin.bottom;
@@ -18,7 +21,6 @@ var y = d3.scale.linear()
 var xScale = d3.scale.ordinal()
 	.domain(d3.range(data.length))
 	.rangeRoundBands([0, width], 0.05);
-//y.domain([0, d3.max(data, function(d) { return d.start; })]);
 
 var svg = d3.select("#graph")
 			.append("svg")
@@ -27,17 +29,7 @@ var svg = d3.select("#graph")
 			.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-/*var chart = d3.select("#graph")
-    .attr("width", width)
-    .attr("height", height);*/
-/*  var bar = chart.selectAll("g")
-      .data(data)
-    .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(" + xScale(i)+ ",0)"; });*/
-
-
   var barWidth = width / data.length;
-
 	var sets = svg.selectAll(".set") 
 		.data(data) 
 		.enter()
@@ -106,6 +98,9 @@ function type(d) {
   d.start = +d.start; // coerce to number
   return d;
 }
+	
+})
+
 
 
 

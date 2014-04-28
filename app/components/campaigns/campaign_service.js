@@ -71,4 +71,8 @@ EZAB_APP.service('CampaignService', ['$rootScope', '$http', 'WebPropertiesServic
 	this.selectCampaign = function($index){
 		$state.go('dash', {propid: $stateParams.propid, cid: that.campaigns[$index].id})
 	}
+
+	this.getStats = function(){
+		return $http.get('/campaigns/' + $stateParams.cid + "/stats");
+	}
 }]);

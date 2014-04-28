@@ -6,6 +6,7 @@ var EZAB_DEV	= angular.module('EZAB_DEV', ['EZAB_APP', 'ngMockE2E']).run(functio
 		$httpBackend.whenPOST(/webproperties.*/).passThrough();
 		$httpBackend.whenPUT(/webproperties.*/).passThrough();
 		$httpBackend.whenDELETE(/webproperties.*/).passThrough();
+		$httpBackend.whenGET(/campaigns.*/).passThrough();
 /*		$httpBackend.whenGET(/webproperties\/\d+\/campaigns\/\d+\/experiences/).respond(function(){
 			return [200, [{id:1, name: 'Red header', code: '$("#header").css({"background-color": "red"});'}, {id:1, name: 'Red button', code: '$("#header").css({"background-color": "red"});'}]]	
 		})
