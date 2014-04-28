@@ -15,7 +15,7 @@ var EZAB_APP = angular.module('EZAB_APP', ['ui.router', 'angular-flash.service',
 				'main': {templateUrl: '/public/components/dash/main.html'},
 				'explist@dash': {templateUrl: '/public/components/experiences/exp.list.html'},
 				'expcontrol@dash': {templateUrl: '/public/components/experiences/exp.add.html'},
-				'graph': {template: 'DAT GRAPH'}
+				'graph@dash': {templateUrl: '/public/components/dash/graph.html'}
 			}
 		})
 				

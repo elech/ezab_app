@@ -14,7 +14,8 @@ var url = require('url');
 var lib_js = [
   'bower_components/angular/angular.js',
   'bower_components/angular-ui-router/release/angular-ui-router.js',
-  'bower_components/angular-flash/dist/angular-flash.js'
+  'bower_components/angular-flash/dist/angular-flash.js',
+  'bower_components/d3/d3.js'
 ];
 
 var src_js = [
