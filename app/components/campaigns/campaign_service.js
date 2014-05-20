@@ -14,10 +14,12 @@ EZAB_APP.service('CampaignService', ['$rootScope', '$http', 'WebPropertiesServic
 	$rootScope.$watch(function(){
 		return $stateParams.cid;
 	}, function(newVal, oldVal){
-		if(newVal != null){
+		if(newVal !== void 0){
 			that.getCampaign(newVal).success(function(data, status, headers){
 				angular.copy(data, that.currentCampaign);
 			})
+		}else{
+			that.currentCampaign = {};
 		}
 	})
 
