@@ -15,7 +15,9 @@ var lib_js = [
   'bower_components/angular/angular.js',
   'bower_components/angular-ui-router/release/angular-ui-router.js',
   'bower_components/angular-flash/dist/angular-flash.js',
-  'bower_components/d3/d3.js'
+  'bower_components/d3/d3.js',
+  'bower_components/codemirror/lib/codemirror.js',
+  'bower_components/codemirror/mode/javascript.js'
 ];
 
 var src_js = [
@@ -26,6 +28,13 @@ var src_js = [
 var views = [
   'app/components/**/*.html'
 ]
+
+var css = [
+  'bower_components/bootstrap/dist/css/bootstrap.css',
+  'bower_components/codemirror/lib/codemirror.css',
+  'app/components/main.css',
+  'app/components/**/*.css'
+];
 
 gulp.task('livereload', function(){
   var server = livereload();
@@ -57,7 +66,7 @@ gulp.task('concat', function(){
 })
 
 gulp.task('css', function(){
-  gulp.src(['bower_components/bootstrap/dist/css/bootstrap.css', 'app/components/main.css', 'app/components/**/*.css'])
+  gulp.src(css)
     .pipe(concat('main.css'))
     .pipe(gulp.dest('build/public/'))
 })
