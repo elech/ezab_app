@@ -1,5 +1,5 @@
 'use strict';
-var EZAB_APP = angular.module('EZAB_APP', ['ui.router', 'angular-flash.service', 'angular-flash.flash-alert-directive']).config(['$stateProvider', 'flashProvider', function($stateProvider, flashProvider){
+var EZAB_APP = angular.module('EZAB_APP', ['ui.router', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ui.bootstrap']).config(['$stateProvider', 'flashProvider', function($stateProvider, flashProvider){
 	$stateProvider
 		.state('login', {
 			url: '',

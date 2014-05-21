@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-//var gulputil = require('gulp-util');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var karma = require('karma');
@@ -17,7 +16,8 @@ var lib_js = [
   'bower_components/angular-flash/dist/angular-flash.js',
   'bower_components/d3/d3.js',
   'bower_components/codemirror/lib/codemirror.js',
-  'bower_components/codemirror/mode/javascript.js'
+  'bower_components/codemirror/mode/javascript.js',
+  'bower_components/angular-ui-bootstrap/dist/ui-bootstrap-0.11.0.js'
 ];
 
 var src_js = [
@@ -44,6 +44,9 @@ gulp.task('livereload', function(){
 gulp.task('views', function(){
   gulp.src(views)
     .pipe(gulp.dest('build/public/components/'))
+
+  gulp.src(['bower_components/angular-ui-bootstrap/template/modal/window.html'])
+    .pipe(gulp.dest('build/public/components/bootstrap/'))
 });
 
 gulp.task('lint', function(){
@@ -109,7 +112,7 @@ gulp.task('staticsvr', function(next){
 })
 
 gulp.task('build', function(){
-  return gulp.src(lib_js.concat(['bower_components/angular-mocks/angular-mocks.js', 'test/mocks.js', 'bower_components/jquery/dist/jquery.js' , 'bower_components/bootstrap/js/dropdown.js'].concat(src_js)))
+  return gulp.src(lib_js.concat(['bower_components/angular-mocks/angular-mocks.js', 'test/mocks.js', 'bower_components/jquery/dist/jquery.js'].concat(src_js)))
     .pipe(concat('main.js'))
     .pipe(gulp.dest('build/public/'));
 })
@@ -117,12 +120,16 @@ gulp.task('build', function(){
 gulp.task('dev', ['test', 'staticsvr'], function(){
   var lr = livereload();
   gulp.watch(src_js.concat(views), ['build', 'views', 'css']).on('change', function(file){
-    lr.changed(file.path)
+    lr.changed(file.path);
   });
 
   gulp.watch(['build/index.html']).on('change', function(file){
     lr.changed(file.path);
   });
+
+  gulp.watch(css, ['build', 'views', 'css']).on('change', function(file){
+    lr.changed(file.path);
+  })
 
   //watch css and sass them
 });
