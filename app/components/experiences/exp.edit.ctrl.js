@@ -16,4 +16,6 @@ EZAB_APP.controller('experiencesEditCtrl',
 				$modalInstance.close();
 			})
 		}
+
+		$scope.$modalInstance = $modalInstance;
 	}])

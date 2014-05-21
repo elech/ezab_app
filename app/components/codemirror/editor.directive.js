@@ -1,5 +1,6 @@
 EZAB_APP.directive('editor', 
-	['$parse', function($parse){
+	['$parse', '$timeout', function($parse, $timeout){
+		
 		return {
 			restrict: 'A',
 			link: function(scope, elem, attrs){				
@@ -11,9 +12,18 @@ EZAB_APP.directive('editor',
 							mode: 'javascript',
 							showCursorWhenSelecting: true
 						});
-				
 				cm.getDoc().setValue(getter(scope) || "");
 				
+				//if within a modal
+				//refresh the codemirror
+				if(scope.$modalInstance){
+					scope.$modalInstance.opened.then(function(){
+						$timeout(function(){
+							cm.refresh();
+						}, 0)
+					})
+				}
+
 				//watches the code mirror editor and sets scope variables
 				cm.on("change", function(cm, changeObj){
 					scope.$apply(function(){
@@ -21,6 +31,7 @@ EZAB_APP.directive('editor',
 						scope[elem[0].form.getAttribute('name')].$setDirty();
 					})
 				});
+
 			}
 		}
 	}])
