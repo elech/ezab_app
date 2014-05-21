@@ -8,4 +8,11 @@ header{
 
 .navbar-fixed-top{
 	border-radius: 0;
+	position:realtive;
+}
+
+.notification-header-bar{
+	margin:0 auto;
+	position:absolute;
+	left:50%;
 }

@@ -56,11 +56,16 @@ EZAB_APP.service('WebPropertiesService', ['$rootScope', '$http', '$state', '$sta
 	}
 
 	this.deleteWebproperty = function(id){
-		return $http.delete('/webproperties/' + id).then(function(res){
+		var deferred = $q.defer();
+		$http.delete('/webproperties/' + id).then(function(res){
 			if(res.status === 200){
+				deferred.resolve(res);
 				that.fetchWebproperties();
 			}
+		}, function(res){
+			deferred.reject(res);
 		})
+		return deferred.promise;
 	}
 
 	this.selectWebproperty = function($index){

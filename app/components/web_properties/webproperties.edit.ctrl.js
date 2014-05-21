@@ -1,4 +1,4 @@
-EZAB_APP.controller('webpropertiesEditCtrl', ['$scope', 'WebPropertiesService', '$state', '$stateParams', function($scope, WebPropertiesService, $state, $stateParams){
+EZAB_APP.controller('webpropertiesEditCtrl', ['$scope', 'WebPropertiesService', '$state', '$stateParams', 'flash', function($scope, WebPropertiesService, $state, $stateParams, flash){
 	$scope.WebPropertiesService = WebPropertiesService;
 
 	$scope.propid = $stateParams.propid;
@@ -9,11 +9,19 @@ EZAB_APP.controller('webpropertiesEditCtrl', ['$scope', 'WebPropertiesService', 
 	}
 
 	$scope.editSubmit = function(){
-		$scope.WebPropertiesService.putWebproperty($scope.tmpWebproperty);
+		$scope.WebPropertiesService.putWebproperty($scope.tmpWebproperty).then(function(res){
+			if(res.status === 200){
+				flash.success = "Updated";
+			}
+		})
 	}
 
 	$scope.delProp = function(){
-		$scope.WebPropertiesService.deleteWebproperty($scope.tmpWebproperty.id);
+		$scope.WebPropertiesService.deleteWebproperty($scope.tmpWebproperty.id).then(function(res){
+			if(res.status === 200){
+				flash.success = "Deleted";
+			}
+		})
 	}
 
 	$scope.publishWebproperty = function(){

@@ -36,6 +36,18 @@
       </li>
       <li><a href="">{{CampaignService.currentCampaign.name}}</a></li>
     </ul>
+
+    <div class="navbar-header notification-header-bar">
+      <div flash-alert="success" active-class="in alert" class="fade">
+        {{flash.message}}
+      </div>
+
+      <div flash-alert="error" active-class="in alert" class="fade">
+        {{flash.message}}
+      </div>
+    </div>
+
+
     <!-- end campaign header -->
     <div class="nav navbar-nav navbar-right" 
       ng-controller="sessionHeaderCtrl"
