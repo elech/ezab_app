@@ -8,10 +8,13 @@ EZAB_APP.directive('editor',
 					, initial = true
 					, cm = CodeMirror.fromTextArea(elem[0], {
 							lineNumbers: true,
-							mode: 'javascript'
+							mode: 'javascript',
+							showCursorWhenSelecting: true
 						});
+				
 				cm.getDoc().setValue(getter(scope) || "");
 				
+				//watches the code mirror editor and sets scope variables
 				cm.on("change", function(cm, changeObj){
 					scope.$apply(function(){
 						setter(scope, cm.getDoc().getValue());
