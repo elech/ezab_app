@@ -137,7 +137,7 @@ gulp.task('dev', ['test', 'staticsvr'], function(){
 gulp.task('prodbuild', function(){
   return gulp.src(lib_js.concat(src_js))
     .pipe(concat('main.js'))
-    .pipe(uglify())
+//    .pipe(uglify())
     .pipe(gulp.dest('dist/public'));
 })
 
@@ -147,7 +147,7 @@ gulp.task('prodviews', function(){
 });
 
 gulp.task('prodcss', function(){
-  gulp.src(['bower_components/bootstrap/dist/css/bootstrap.css', 'app/components/main.css', 'app/components/**/*.css'])
+  gulp.src(css)
     .pipe(concat('main.css'))
     .pipe(gulp.dest('dist/public/'))
 })
