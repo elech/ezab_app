@@ -136,9 +136,6 @@ gulp.task('dev', ['test', 'staticsvr'], function(){
 
 gulp.task('prodbuild', function(){
   return gulp.src(lib_js.concat(src_js))
-    .pipe(uglify({
-      outSourceMap: true
-    }))
     .pipe(concat('main.js'))
     .pipe(gulp.dest('dist/public'));
 })
