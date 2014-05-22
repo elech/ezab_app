@@ -31,7 +31,7 @@ describe('Session service', function(){
 	it('should save the token on fetch', inject(function(Session, $httpBackend){
 		var email = "username";
 		var password = "password";
-		$httpBackend.expectPOST('/tokens', {email: email, password: password}).respond(201, {token: token});
+		$httpBackend.expectPOST(/.*tokens/, {email: email, password: password}).respond(201, {token: token});
 		Session.createToken(email, password)
 		$httpBackend.flush();
 		expect(Session.getToken()).toEqual(token);
@@ -40,7 +40,7 @@ describe('Session service', function(){
 	it('should remove token on logout', inject(function(Session, $window, $httpBackend){
 		$window.sessionStorage.setItem('token', 'abcaaa');
 		$httpBackend.when('DELETE', '/tokens').respond(200);
-		$httpBackend.expectDELETE('/tokens');
+		$httpBackend.expectDELETE(/.*tokens/);
 		Session.logout();
 //		$httpBackend.flush();
 		expect(Session.getToken()).toBeUndefined();

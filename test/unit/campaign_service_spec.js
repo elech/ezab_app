@@ -14,7 +14,7 @@ describe('Campaign service', function(){
 
 	describe('Getting', function(){
 		it('should get all campaigns', function(){
-			$httpBackend.expectGET('/webproperties/1/campaigns').respond(200);
+			$httpBackend.expectGET(/.*webproperties\/1\/campaigns/).respond(200);
 			CampService.getCampaigns(1);
 			$httpBackend.flush()
 		})
@@ -23,8 +23,8 @@ describe('Campaign service', function(){
 	describe('Editing', function(){
 		it('Editing', function(){
 			var camp = {id: 1, name: 'datCamp', start: 'function', success: 'otherfunc'};
-			$httpBackend.expectPUT('/webproperties/1/campaigns/1', {name: camp.name, start: camp.start, success: camp.success}).respond(200);
-			$httpBackend.expectGET('/webproperties/1/campaigns').respond(200);
+			$httpBackend.expectPUT(/.*webproperties\/1\/campaigns\/1/, {name: camp.name, start: camp.start, success: camp.success}).respond(200);
+			$httpBackend.expectGET(/.*webproperties\/1\/campaigns/).respond(200);
 			CampService.editCampaign(1, camp);
 			$httpBackend.flush()
 		})
@@ -33,8 +33,8 @@ describe('Campaign service', function(){
 	describe('Creating', function(){
 		it('should create a campaign', function(){
 			var camp = {name: 'datCamp', start: 'function', success: 'otherfunc'};
-			$httpBackend.expectPOST('/webproperties/1/campaigns', camp).respond(201);
-			$httpBackend.expectGET('/webproperties/1/campaigns').respond(200);
+			$httpBackend.expectPOST(/.*webproperties\/1\/campaigns/, camp).respond(201);
+			$httpBackend.expectGET(/.*webproperties\/1\/campaigns/).respond(200);
 			CampService.createCampaign(1, camp);
 			$httpBackend.flush();
 		})
@@ -43,8 +43,8 @@ describe('Campaign service', function(){
 	describe('Deleting', function(){
 		it('should delete', function(){
 			var camp = {id: 1, name: 'datCamp', start: 'function', success: 'otherfunc'};
-			$httpBackend.expectDELETE('/webproperties/1/campaigns/1').respond(200);
-			$httpBackend.expectGET('/webproperties/1/campaigns').respond(200);
+			$httpBackend.expectDELETE(/.*webproperties\/1\/campaigns\/1/).respond(200);
+			$httpBackend.expectGET(/.*webproperties\/1\/campaigns/).respond(200);
 			CampService.deleteCampaign(1, camp);
 			$httpBackend.flush();
 		})

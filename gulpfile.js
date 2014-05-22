@@ -8,6 +8,7 @@ var connect = require('connect');
 var serveStatic = require('serve-static');
 var proxy = require('proxy-middleware');
 var url = require('url');
+var replace = require('gulp-replace');
 
 
 var lib_js = [
@@ -111,7 +112,7 @@ gulp.task('staticsvr', function(next){
 })
 
 gulp.task('build', function(){
-  return gulp.src(lib_js.concat(['bower_components/angular-mocks/angular-mocks.js', 'test/mocks.js', 'bower_components/jquery/dist/jquery.js'].concat(src_js)))
+  return gulp.src(lib_js.concat(['bower_components/angular-mocks/angular-mocks.js', 'test/mocks.js'].concat(src_js)))
     .pipe(concat('main.js'))
     .pipe(gulp.dest('build/public/'));
 })
@@ -134,9 +135,10 @@ gulp.task('dev', ['test', 'staticsvr'], function(){
 });
 
 gulp.task('prodbuild', function(){
-  return gulp.src(lib_js.concat(['bower_components/jquery/dist/jquery.js' , 'bower_components/bootstrap/js/dropdown.js'].concat(src_js)))
+  return gulp.src(lib_js.concat(src_js))
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/public/'));
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/public'));
 })
 
 gulp.task('prodviews', function(){
@@ -150,12 +152,18 @@ gulp.task('prodcss', function(){
     .pipe(gulp.dest('dist/public/'))
 })
 
-//get it ready to place in the api
-gulp.task('dist', ['prodbuild',  'prodviews', 'prodcss'], function(){
-  //wat
+gulp.task('prodindex', function(){
+  gulp.src('build/index.html')
+    .pipe(replace(/EZAB_DEV/, 'EZAB_APP'))
+    .pipe(gulp.dest('dist/'))
 })
+
+//how it should look in prod
+gulp.task('dist', ['prodbuild', 'prodviews', 'prodcss', 'prodindex'], function(){
+  //do something
+});
 
 
 gulp.task('test', function(){
-  gulp.watch(src_js.concat(['test/unit/*.js']), ['lint', 'karma-unit']);
-})
+  gulp.watch(src_js.concat(['test/unit/*.js']), ['karma-unit']);
+});
