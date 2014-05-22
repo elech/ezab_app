@@ -1,6 +1,6 @@
 
 var EZAB_DEV	= angular.module('EZAB_DEV', ['EZAB_APP', 'ngMockE2E']).run(function($httpBackend){
-		$httpBackend.whenPOST('/tokens').passThrough();
+		$httpBackend.whenPOST(/.*/).passThrough();
 		$httpBackend.whenDELETE(/tokens.*/).passThrough();
 		$httpBackend.whenGET(/webproperties.*/).passThrough();
 		$httpBackend.whenPOST(/webproperties.*/).passThrough();

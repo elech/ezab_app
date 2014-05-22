@@ -100,11 +100,10 @@ gulp.task('karma-unit', function(){
 gulp.task('staticsvr', function(next){
   var app = connect();
 
-  app.use('/tokens', proxy(url.parse('http://localhost:8000/tokens')));
-  app.use('/webproperties', proxy(url.parse('http://localhost:8000/webproperties')));
-  app.use('/campaigns', proxy(url.parse('http://localhost:8000/campaigns')));
+  app.use('/api/v1/tokens', proxy(url.parse('http://localhost:8000/api/v1/tokens')));
+  app.use('/api/v1/webproperties', proxy(url.parse('http://localhost:8000/api/v1/webproperties')));
+  app.use('/api/v1/campaigns', proxy(url.parse('http://localhost:8000/api/v1/campaigns')));
   app.use(serveStatic('build/', {'index': 'index.html'}));
-  //app.use('/webproperties', proxy(url.parse('localhost:8000')));
   app.listen(3000, function(){
     next();
     console.log('listen');
