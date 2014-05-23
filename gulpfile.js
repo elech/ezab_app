@@ -31,7 +31,6 @@ var views = [
 ]
 
 var css = [
-  'bower_components/bootstrap/dist/css/bootstrap.css',
   'bower_components/codemirror/lib/codemirror.css',
   'app/components/main.css',
   'app/components/**/*.css'
@@ -72,7 +71,7 @@ gulp.task('concat', function(){
 gulp.task('css', function(){
   gulp.src(css)
     .pipe(concat('main.css'))
-    .pipe(gulp.dest('build/public/'))
+    .pipe(gulp.dest('build/public'))
 })
 
 gulp.task('karma-unit', function(){
