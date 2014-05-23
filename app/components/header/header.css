@@ -28,3 +28,7 @@ header{
 	border-radius: 0px;
 	border:none;
 }
+
+#logout-btn{
+	margin-top:7px;
+}
