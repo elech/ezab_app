@@ -2,7 +2,7 @@
 var EZAB_APP = angular.module('EZAB_APP', ['ui.router', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ui.bootstrap']).config(['$stateProvider', 'flashProvider', function($stateProvider, flashProvider){
 	$stateProvider
 		.state('login', {
-			url: '',
+			url: '/',
 			views: {
 				'header': { template: ''},
 				'main': {templateUrl: '/public/components/login/login.html'}

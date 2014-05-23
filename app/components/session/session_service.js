@@ -23,16 +23,7 @@ EZAB_APP.service('Session', ['$rootScope', '$http', '$window', '$q', '$state', f
 	};
 
 	this.logout = function(){
-/*		var deferred = $q.defer();
-		$http.delete('/tokens').then(function(res){
-			if(res.status === 200){*/
-				$window.sessionStorage.removeItem('token');
-				$state.go('login');	
-/*				deferred.resolve(res);
-			}else{
-				deferred.reject(res);
-			}
-		})
-		return deferred.promise;*/
+		$state.go('login');
+		$window.sessionStorage.removeItem('token');
 	};
 }])
