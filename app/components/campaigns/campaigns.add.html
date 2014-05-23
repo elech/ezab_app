@@ -2,6 +2,8 @@
   <!-- Default panel contents -->
   <div class="panel-heading">Create new Campaign</div>
   <div class="panel-body">
+    <div class="alert alert-info"><strong>Start and success functions must return a boolean value</strong>
+    <br/>For example return window.location.href === "/"</div>
     <!-- start form -->
     <form role="form" name="campaignAddForm" novalidate>
 		  <div class="form-group" ng-class="{'has-error': campaignAddForm.name.$invalid && campaignAddForm.name.$dirty}">
