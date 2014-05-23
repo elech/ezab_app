@@ -6,13 +6,25 @@ header{
 	margin-top:60px;
 }
 
+.navbar-default{
+	background-color:#fff;
+}
+
 .navbar-fixed-top{
 	border-radius: 0;
 	position:realtive;
+
 }
 
 .notification-header-bar{
 	margin:0 auto;
 	position:absolute;
 	left:50%;
+}
+
+.notification-header-bar > .alert{
+	/*padding:10px;*/
+	margin-bottom:0px;
+	border-radius: 0px;
+	border:none;
 }

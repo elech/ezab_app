@@ -1,8 +1,13 @@
-<div class="panel panel-info">
+<div class="panel panel-primary" ng-controller="campaignsListCtrl">
   <!-- Default panel contents -->
-  <div class="panel-heading">Campaigns</div>
-  <ul class="list-group"
-  		ng-controller="campaignsListCtrl">
+  <div class="panel-heading">
+    Campaigns
+    <button class="btn btn-success pull-right btn-xs" 
+      ng-click="addRoute()">
+      Create
+    </button>
+  </div>
+  <ul class="list-group">
     <li class="list-group-item"
     		ng-repeat="camp in CampaignService.campaigns">
     		<a ng-click="CampaignService.selectCampaign($index)">

@@ -5,3 +5,25 @@
 .CodeMirror{
 	min-height:200px;
 }
+
+.btn-primary{
+	background-color:#286d9f;
+}
+
+body{
+	background-color:#E5ECF1;
+}
+
+
+.panel-primary > .panel-heading{
+	background-color:#1b5a88;
+}
+
+.panel-info > .panel-heading{
+	background-color:#286d9f;
+	color:#FFF;
+}
+
+.panel-primary, .panel-info{
+	border:none;
+}

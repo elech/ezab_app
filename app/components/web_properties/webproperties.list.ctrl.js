@@ -6,4 +6,8 @@ EZAB_APP.controller('webpropertiesListCtrl', ['$scope', 'WebPropertiesService', 
 		WebPropertiesService.currentWebproperty = $scope.WebPropertiesService.webproperties[$index];
 		$state.go('webprops.edit', {propid: $scope.WebPropertiesService.currentWebproperty.id}, {reload: true})
 	}
+
+	$scope.addRoute = function(){
+		$state.go('webprops');
+	}
 }]);

@@ -1,4 +1,4 @@
-<div class="panel panel-default" ng-controller="campaignsAddCtrl">
+<div class="panel panel-info" ng-controller="campaignsAddCtrl">
   <!-- Default panel contents -->
   <div class="panel-heading">Create new Campaign</div>
   <div class="panel-body">
@@ -20,7 +20,7 @@
 		    <span class="label label-danger pull-right" ng-show="campaignAddForm.success.$error.required && campaignAddForm.success.$dirty">Required</span>
 		    <textarea editor name="success" required ng-model="camp.success"></textarea>
 		  </div>
-		  <button type="submit" class="btn btn-default" ng-click="createCampaign()" ng-disabled="campaignAddForm.$invalid">Add</button>
+		  <button type="submit" class="btn btn-success" ng-click="createCampaign()" ng-disabled="campaignAddForm.$invalid">Add</button>
 		</form>
 <!-- end form -->
   </div>

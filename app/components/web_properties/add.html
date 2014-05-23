@@ -1,4 +1,4 @@
-<div class="panel panel-default" ng-controller="webpropertiesAddCtrl">
+<div class="panel panel-info" ng-controller="webpropertiesAddCtrl">
   <!-- Default panel contents -->
   <div class="panel-heading">Add Web Property</div>
   <div class="panel-body">
@@ -15,7 +15,7 @@
 		    <span class="label label-danger pull-right" ng-show="propAddForm.url.$error.required && propAddForm.url.$dirty">Required</span>
 		    <input type="url" class="form-control" name="url" placeholder="http://www.mydomain.com" required ng-model="prop.url">
 		  </div>
-		  <button type="submit" class="btn btn-default" ng-click="createWebproperty()" ng-disabled="propAddForm.$invalid">Add</button>
+		  <button type="submit" class="btn btn-success" ng-click="createWebproperty()" ng-disabled="propAddForm.$invalid">Add</button>
 		</form>
 <!-- end form -->
   </div>

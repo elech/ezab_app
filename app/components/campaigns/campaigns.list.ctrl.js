@@ -6,4 +6,8 @@ EZAB_APP.controller('campaignsListCtrl', ['$scope', 'CampaignService', '$state',
 		$scope.CampaignService.currentCampaign = $scope.CampaignService.campaigns[$index];
 		$state.go('campaigns.edit', {propid: $scope.WebPropertiesService.currentWebproperty.id, cid: $scope.CampaignService.currentCampaign.id})
 	}
+
+	$scope.addRoute = function(){
+		$state.go('campaigns');
+	}
 }]);

@@ -7,7 +7,6 @@ EZAB_APP.directive('graph', ['CampaignService', function(CampaignService){
 			//var data = [{experienceId: 0, start: 3, success: 2}, {experienceId: 3, start: 4, success: 4}];
 
 CampaignService.getStats().success(function(data,status){
-	console.log(data);
 var margin = {top: 25, right: 75, bottom: 85, left: 85},
 				w = 600 - margin.left - margin.right,
 				h = 350 - margin.top - margin.bottom;
