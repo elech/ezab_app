@@ -17,9 +17,13 @@ header{
 }
 
 .notification-header-bar{
-	margin:0 auto;
+
+	margin-left: auto;
+	margin-right: auto;
+	left:0;
+	right:0;
 	position:absolute;
-	left:50%;
+	max-width:500px;
 }
 
 .notification-header-bar > .alert{
@@ -27,6 +31,7 @@ header{
 	margin-bottom:0px;
 	border-radius: 0px;
 	border:none;
+	text-align: center;
 }
 
 #logout-btn{
