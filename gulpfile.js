@@ -142,6 +142,9 @@ gulp.task('prodbuild', function(){
 gulp.task('prodviews', function(){
   gulp.src(views)
     .pipe(gulp.dest('dist/public/components/'))
+
+  gulp.src(['bower_components/angular-ui-bootstrap/template/modal/window.html'])
+    .pipe(gulp.dest('dist/public/components/bootstrap/'))
 });
 
 gulp.task('prodcss', function(){
